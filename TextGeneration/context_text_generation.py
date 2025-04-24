@@ -60,7 +60,6 @@ def summarize_report_and_answer_questions(file_path):
     # Summarizing the medical report
     summary = summarize_text(text)
     
-    # Example interactive question loop
     while True:
         print("\nAsk a medical question based on the report, or type 'exit' to quit:")
         question = input("Question: ").strip()
@@ -69,11 +68,10 @@ def summarize_report_and_answer_questions(file_path):
             print("Exiting the medical assistant...")
             break
         
-        # Get the answer based on the report summary
+        # Getting the answer based on the report summary
         answer = answer_medical_question(summary, question)
         
         print("\nAnswer: ", answer)
 
-# Run the process
 summarize_report_and_answer_questions(file_path)
 
