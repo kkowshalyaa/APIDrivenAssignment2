@@ -14,16 +14,15 @@ uploaded = files.upload()
 
 
 # Getting the file path from the uploaded file
-file_path = next(iter(uploaded))  # Get the file name (assuming only one file uploaded)
+file_path = next(iter(uploaded))  
 
 
 # Uploading the file to OpenAI for fine-tuning
 def upload_file(file_path):
-    # Open the file in binary mode and upload it for fine-tuning purposes
     with open(file_path, "rb") as file:
         response = client.files.create(
             file=file,
-            purpose='fine-tune'  # Indicate that the file is for fine-tuning
+            purpose='fine-tune' 
         )
         return response.id
 
@@ -35,8 +34,8 @@ print(f"File uploaded successfully. File ID: {file_id}")
 def fine_tune_model(file_id):
     # Trigger fine-tuning using the file ID
     response = client.fine_tuning.jobs.create(
-        training_file=file_id,  # Pass the file ID for training
-        model="gpt-3.5-turbo"  # You can use other models like "gpt-3.5-turbo" based on availability
+        training_file=file_id,  
+        model="gpt-3.5-turbo"  
     )
     return response.id
 
@@ -46,9 +45,7 @@ print(f"Fine-tuning job started. Fine-tune ID: {fine_tune_id}")
 
 # Monitor the fine-tuning status
 def monitor_fine_tuning(fine_tune_id):
-      # Retrieve the fine-tuning job status
-      time.sleep(30)
-      #response = client.fine_tuning.jobs.list_events(fine_tuning_job_id=ftevent-Fvw4sCQoshcjqBZXl4P0TQLx, limit=2) 
+      time.sleep(600)
       response = client.fine_tuning.jobs.list_events(fine_tuning_job_id=fine_tune_id, limit=2)
       print(response)
 
