@@ -7,10 +7,10 @@
 from openai import OpenAI
 from google.colab import userdata
 
-# Initialize OpenAI client
+# Initializing OpenAI client
 client = OpenAI(api_key=userdata.get('OPENAPI_TOKEN'))
 
-# Respond using the fine-tuned model
+# Responding using the fine-tuned model
 def respond_to_emergency(query):
     response = client.chat.completions.create(
         model="ft:gpt-3.5-turbo-0125:personal::BQxp4Pz6",  # Fine-tuned model ID
@@ -30,6 +30,5 @@ def main():
     response = respond_to_emergency(query)
     print("Emergency Response:", response.choices[0].message.content)
 
-# Run the main function to interact with the fine-tuned model
 if __name__ == "__main__":
     main()
